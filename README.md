@@ -5,20 +5,20 @@ Script
 
 	-Corre este script para crear la bd en el localdb
 
-CREATE DATABASE AgendaDatabase
+	CREATE DATABASE AgendaDatabase
 
-USE AgendaDatabase
+	USE AgendaDatabase
 
-CREATE TABLE [dbo].[Agenda]
-(
-	[Id] INT NOT NULL IDENTITY, 
-    [LastName] NVARCHAR(50) NOT NULL, 
-    [SecondLastName] NVARCHAR(50) NOT NULL, 
-    [Photo] NVARCHAR(MAX) NOT NULL, 
-    [Phone] NVARCHAR(20) NOT NULL, 
-    [FirstName] NVARCHAR(100) NOT NULL, 
-    CONSTRAINT [PK_Table] PRIMARY KEY ([Id])
-)
+	CREATE TABLE [dbo].[Agenda]
+	(
+		[Id] INT NOT NULL IDENTITY, 
+	    [LastName] NVARCHAR(50) NOT NULL, 
+	    [SecondLastName] NVARCHAR(50) NOT NULL, 
+	    [Photo] NVARCHAR(MAX) NOT NULL, 
+	    [Phone] NVARCHAR(20) NOT NULL, 
+	    [FirstName] NVARCHAR(100) NOT NULL, 
+	    CONSTRAINT [PK_Table] PRIMARY KEY ([Id])
+	)
 
 
 	-Si no creaste la bd en el local db tendras que cambiar la cadena de conexion en el archivo AppSettings localizado en el root del proyecto
