@@ -1,0 +1,101 @@
+
+<div class="container-title">
+    <div class="col-sm-10">
+        <span class="title">{{ data.title}}</span>
+    </div>
+    <div class="col-sm-2 col-button-close">
+        <button type="button" class="button-close" [mat-dialog-close]="true"> 
+            <mat-icon class="icon">close</mat-icon>
+        </button>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
+    <mat-dialog-content>
+            <div class="row">
+                    <div class="col-sm-12" style="padding-left: 30px;">
+                      <mat-error *ngIf="isError">
+                        {{ messageError }}
+                      </mat-error>
+                    </div>
+                    <div class="col-sm-12 col-lg-6" style="padding-left: 30px;">
+                      <mat-form-field class="full-width">
+                        <input #firstName matInput placeholder="Nombre" formControlName="FirstName">
+                        <mat-error *ngIf="form.controls['FirstName'].hasError('required')">
+                          Nombre es requerido
+                        </mat-error>
+                        <mat-error *ngIf="form.controls['FirstName'].hasError('maxlength')">
+                            La longitud maxima es {{ form.controls['FirstName'].getError("maxlength")?.requiredLength }}
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-sm-12 col-lg-6" style="padding-right: 30px;">
+                      <mat-form-field class="full-width">
+                        <input matInput placeholder="Apellido Materno" formControlName="LastName">
+                        <mat-error *ngIf="form.controls['LastName'].hasError('required')">
+                            Apellido Materno es requerido
+                        </mat-error>
+                        <mat-error *ngIf="form.controls['LastName'].hasError('maxlength')">
+                            La longitud maxima es {{ form.controls['LastName'].getError("maxlength")?.requiredLength }}
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+        
+                    <div class="col-sm-12 col-lg-6">
+                      <div class="col-sm-12 col-lg-12" style="padding-right: 0px">
+                        <mat-form-field class="full-width">
+                          <input matInput placeholder="Apellido Paterno" formControlName="SecondLastName">
+                          <mat-error *ngIf="form.controls['SecondLastName'].hasError('required')">
+                                Apellido Paterno es requerido
+                            </mat-error>
+                            <mat-error *ngIf="form.controls['SecondLastName'].hasError('maxlength')">
+                                La longitud maxima es {{ form.controls['SecondLastName'].getError("maxlength")?.requiredLength }}
+                            </mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-sm-12 col-lg-12" style="padding-right: 0px">
+                            <mat-form-field class="full-width">
+                              <input matInput placeholder="Telefono" formControlName="Phone">
+                              <mat-error *ngIf="form.controls['Phone'].hasError('required')">
+                                    Telefono es requerido
+                                </mat-error>
+                                <mat-error *ngIf="form.controls['Phone'].hasError('maxlength')">
+                                    La longitud maxima es {{ form.controls['Phone'].getError("maxlength")?.requiredLength }}
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-6">
+                          <div class="col-sm-12">
+                              <div class="container-photo">
+                                  <span class="title-file">Foto</span>
+                                  <img [src]="photoFile.source || DefaultImage" class="rounded-circle mat-elevation-z1" height="150" width="150"/>
+                                  <div style="    display: flex;
+                                  flex-direction: column;
+                                  justify-items: center;
+                                  justify-content: center;
+                                  align-items: center;">
+                                      <button type="button" class="dark-button btn-photo" (click)="inputFilePhoto.click()">Seleccionar archivo</button>
+                                      <input #inputFilePhoto type="file" style="display: none" (change)="selectFile($event)" accept=".jpg,.png">
+                                      <mat-error *ngIf="form.controls['Photo'].hasError('pattern')">
+                                          Extension de archivo invalida
+                                      </mat-error>
+                                      <mat-error *ngIf="form.controls['Photo'].hasError('required')">
+                                        Archivo requerido
+                                    </mat-error>
+                                  </div>
+                              </div>
+                            
+                          </div>
+                    </div>
+                </div>
+    </mat-dialog-content>
+    <mat-divider></mat-divider>
+    <mat-dialog-actions>
+        <button type="submit" class="btn light-button" *ngIf="isVisibleButton"> 
+            <mat-icon class="icon">save</mat-icon>
+            <span>Guardar</span>
+        </button>  
+    </mat-dialog-actions>
+  </form>
+  
